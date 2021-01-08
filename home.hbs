@@ -1,0 +1,44 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the {body} of the default.hbs template --}}
+
+{{> header}}
+
+{{#page}}
+
+<main class="main_minimal" role="main">
+
+    <article class="article__wrapper" role="article">
+        <header>
+            <h1 class="post__title">
+                {{title}}
+            </h1>
+        </header>
+
+        <section class="post__content-wrapper">
+            <div class="post__content">
+                {{content}}
+            </div>
+        </section>
+    </article>
+
+    <br />
+
+    <h2 style="text-align:center; color:#ddd; font-weight:600;">↓ Things you can use ↓</h2>
+
+    <br />
+    <br />
+    
+    {{! Find pages that are set to featured and show them from oldest to newest }}
+   {{#get "pages" filter="featured:true" order="published_at asc"}}
+
+                {{! Loop and show these pages }}
+                {{#foreach pages}}
+                    {{> card}}
+                {{/foreach}}
+    {{/get}}
+
+</main>
+
+{{/page}}
+
+{{> footer}}
